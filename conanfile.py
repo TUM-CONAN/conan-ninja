@@ -19,7 +19,7 @@ class NinjaConan(ConanFile):
 
     def build(self):
         with tools.chdir("%s-%s" % (self.name, self.version)):
-            self.run("python configure.py --bootstrap")
+            self.run("python3 configure.py --bootstrap")
 
     def package(self):
         self.copy(
