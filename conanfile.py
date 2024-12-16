@@ -21,13 +21,11 @@ class NinjaConan(ConanFile):
     settings = "os", "arch", "compiler", "build_type"
 
     options = { 
-        "python": ["ANY"],
         "python_version": ["ANY"],
         "with_system_python": [True, False],
     }
 
     default_options = {
-        "python": "python3",
         "python_version": "3.12",
         "with_system_python": False,
     }
