@@ -20,8 +20,23 @@ class NinjaConan(ConanFile):
     topics = ("ninja", "build")
     settings = "os", "arch", "compiler", "build_type"
 
+    options = { 
+        "python": ["ANY"],
+        "python_version": ["ANY"],
+        "with_system_python": [True, False],
+    }
+
+    default_options = {
+        "python": "python3",
+        "python_version": "3.12",
+        "with_system_python": False,
+    }
+
     def requirements(self):
-        self.requires("python_dev_config/[>=1.1]@camposs/stable")
+        if not self.options.with_system_python:
+            self.requires("cpython/[~{}]".format(self.options.python_version), run=True)
+            self.requires("python-pip/24.3.1@camposs/stable", run=True)
+            self.requires("python-setuptools/75.6.0@camposs/stable", run=True)
 
     def layout(self):
         cmake_layout(self, src_folder="src")
