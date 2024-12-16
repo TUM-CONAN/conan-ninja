@@ -9,13 +9,19 @@ required_conan_version = ">=1.52.0"
 
 class NinjaConan(ConanFile):
     name = "ninja"
+    version = "1.12.1"
+
     package_type = "application"
+
     description = "Ninja is a small build system with a focus on speed"
     license = "Apache-2.0"
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://github.com/ninja-build/ninja"
     topics = ("ninja", "build")
     settings = "os", "arch", "compiler", "build_type"
+
+    def requirements(self):
+        self.requires("python_dev_config/[>=1.1]@camposs/stable")
 
     def layout(self):
         cmake_layout(self, src_folder="src")
